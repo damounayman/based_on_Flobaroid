@@ -1,0 +1,124 @@
+<?xml version="1.0" ?>
+<robot name="ground" xmlns:xacro="http://ros.org/wiki/xacro">
+    <link name="world" />
+    <link name="ground_link">
+        <inertial>
+            <mass value="1.0" />
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <inertia ixx="1.0" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="1.0" />
+        </inertial>
+        <visual>
+            <origin xyz="0.9 0 -0.025" rpy="0 0 0" />
+            <geometry>
+                <box size="4.2 5 0.05" />
+            </geometry>
+        </visual>
+    </link>
+    <joint name="ground_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <parent link="world" />
+        <child link="ground_link" />
+    </joint>
+
+    <link name="cage_1">
+       <inertial>
+            <mass value="1.0" />
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <inertia ixx="1.0" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="1.0" />
+       </inertial>
+      <visual>
+      <origin xyz="0.9 2.52 1.1" rpy="0 0 0" />
+        <geometry>
+          <box size="4.3 0.07 2.2" />
+        </geometry>
+      </visual>
+    </link>
+
+    <link name="cage_2">
+       <inertial>
+            <mass value="1.0" />
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <inertia ixx="1.0" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="1.0" />
+       </inertial>
+      <visual>
+      <origin xyz="0.9 -2.52 1.1" rpy="0 0 0" />
+        <geometry>
+          <box size="4.3 0.07 2.2" />
+        </geometry>
+      </visual>
+    </link>
+
+
+    <link name="cage_3">
+       <inertial>
+            <mass value="1.0" />
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <inertia ixx="1.0" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="1.0" />
+       </inertial>
+      <visual>
+      <origin xyz="3.03 0 1.1" rpy="0 0 0" />
+        <geometry>
+          <box size="0.07 5 2.2" />
+        </geometry>
+      </visual>
+    </link>
+
+    <link name="cage_4">
+       <inertial>
+            <mass value="1.0" />
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <inertia ixx="1.0" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="1.0" />
+       </inertial>
+      <visual>
+      <origin xyz="-1.23 0 1.1" rpy="0 0 0" />
+        <geometry>
+          <box size="0.07 5 2.2" />
+        </geometry>
+      </visual>
+    </link>
+
+    <link name="table_tournante">
+       <inertial>
+            <mass value="1.0" />
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <inertia ixx="1.0" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="1.0" />
+       </inertial>
+      <visual>
+      <origin xyz="1.9 1 0.27" rpy="0 0 0" />
+        <geometry>
+          <box size="1.05 1.1 0.6" />
+        </geometry>
+      </visual>
+    </link>
+
+    <joint name="cage_1" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <parent link="world" />
+        <child link="cage_1" />
+    </joint>
+
+    <joint name="cage_2" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <parent link="world" />
+        <child link="cage_2" />
+    </joint>
+
+    <joint name="cage_3" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <parent link="world" />
+        <child link="cage_3" />
+    </joint>
+
+    <joint name="cage_4" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <parent link="world" />
+        <child link="cage_4" />
+    </joint>
+
+    <joint name="table_tournante" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <parent link="world" />
+        <child link="table_tournante" />
+    </joint>
+</robot>
+

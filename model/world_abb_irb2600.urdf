@@ -1,0 +1,169 @@
+<?xml version="1.0" ?>
+<robot name="ground" xmlns:xacro="http://ros.org/wiki/xacro">
+    <link name="world" />
+    <link name="ground_link">
+        <inertial>
+            <mass value="1.0" />
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <inertia ixx="1.0" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="1.0" />
+        </inertial>
+        <visual>
+            <origin xyz="0.5 0 -0.025" rpy="0 0 0" />
+            <geometry>
+                <box size="2.5 4.0 0.05" />
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="cage_1">
+       <inertial>
+            <mass value="1.0" />
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <inertia ixx="1.0" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="1.0" />
+       </inertial>
+      <visual>
+      <origin xyz="0.55 2 1.1" rpy="0 0 0" />
+        <geometry>
+          <box size="2.3 0.07 2.2" />
+        </geometry>
+      </visual>
+    </link>
+
+    <link name="cage_2">
+       <inertial>
+            <mass value="1.0" />
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <inertia ixx="1.0" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="1.0" />
+       </inertial>
+      <visual>
+      <origin xyz="0.55 -2 1.1" rpy="0 0 0" />
+        <geometry>
+          <box size="2.3 0.07 2.2" />
+        </geometry>
+      </visual>
+    </link>
+
+
+    <link name="cage_3">
+       <inertial>
+            <mass value="1.0" />
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <inertia ixx="1.0" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="1.0" />
+       </inertial>
+      <visual>
+      <origin xyz="1.7 0 1.1" rpy="0 0 0" />
+        <geometry>
+          <box size="0.07 4 2.2" />
+        </geometry>
+      </visual>
+    </link>
+
+
+    <link name="cage_4">
+       <inertial>
+            <mass value="1.0" />
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <inertia ixx="1.0" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="1.0" />
+       </inertial>
+      <visual>
+      <origin xyz="-0.6 0 1.1" rpy="0 0 0" />
+        <geometry>
+          <box size="0.07 4 2.2" />
+        </geometry>
+      </visual>
+    </link>
+
+
+    <link name="post_collaboratif">
+       <inertial>
+            <mass value="1.0" />
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <inertia ixx="1.0" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="1.0" />
+       </inertial>
+      <visual>
+      <origin xyz="1.3 0.17 0.45" rpy="0 0 0" />
+        <geometry>
+          <box size="0.8 1.1 0.9" />
+        </geometry>
+      </visual>
+    </link>
+
+    <link name="table_usinage">
+       <inertial>
+            <mass value="1.0" />
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <inertia ixx="1.0" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="1.0" />
+       </inertial>
+      <visual>
+      <origin xyz="0.63 1.5 0.45" rpy="0 0 0" />
+        <geometry>
+          <box size="0.8 0.65 0.9" />
+        </geometry>
+      </visual>
+    </link>
+
+
+    <link name="distributeur">
+       <inertial>
+            <mass value="1.0" />
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <inertia ixx="1.0" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="1.0" />
+       </inertial>
+      <visual>
+      <origin xyz="-0.1 1.8 0.85" rpy="0 0 0" />
+        <geometry>
+          <box size="0.5 0.5 1.7" />
+        </geometry>
+      </visual>
+    </link>
+
+    <joint name="cage_1" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <parent link="world" />
+        <child link="cage_1" />
+    </joint>
+
+    <joint name="cage_2" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <parent link="world" />
+        <child link="cage_2" />
+    </joint>
+
+    <joint name="cage_3" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <parent link="world" />
+        <child link="cage_3" />
+    </joint>
+
+    <joint name="cage_4" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <parent link="world" />
+        <child link="cage_4" />
+    </joint>
+
+    <joint name="post_collaboratif" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <parent link="world" />
+        <child link="post_collaboratif" />
+    </joint>
+
+    <joint name="table_usinage" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <parent link="world" />
+        <child link="table_usinage" />
+    </joint>
+
+    <joint name="distributeur" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <parent link="world" />
+        <child link="distributeur" />
+    </joint>
+
+    <joint name="ground_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <parent link="world" />
+        <child link="ground_link" />
+    </joint>
+
+</robot>
+

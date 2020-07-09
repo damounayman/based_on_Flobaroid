@@ -1,0 +1,351 @@
+<?xml version="1.0" ?>
+<robot name="kuka-lwr" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <material name="Kuka/DarkGrey">
+    <color rgba="0.3 0.3 0.3 1.0"/>
+  </material>
+  <material name="Kuka/LightGrey">
+    <color rgba="0.8 0.8 0.8 1.0"/>
+  </material>
+  <material name="Kuka/Red">
+    <color rgba="0.3 0.3 0.3 1.0"/>
+  </material>
+  <material name="Kuka/Black">
+    <color rgba="0 0 0 1.0"/>
+  </material>
+  <material name="Kuka/Orange">
+    <color rgba="1.0 0.487 0 1.0"/>
+  </material>
+  <material name="Kuka/Silver">
+    <color rgba="1.0 1.0 1.0 1.0"/>
+  </material>
+  <material name="Kuka/Grey">
+    <color rgba="0.7 0.7 0.7 1.0"/>
+  </material>
+  <material name="Kuka/Blue">
+    <color rgba="0.0 0.0 0.8 1.0"/>
+  </material>
+
+
+  <link name="box">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.5 0.5 0.5"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.5 0.5 0.5"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- using the models -->
+  <!-- First (shoulder) element of the arm. Fixed to its parent. -->
+  <joint name="box_support" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="box"/>
+    <child link="support"/>
+  </joint>
+  <link name="support">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="/home/geekayman/based_on_flobaroid/model/meshes/irb2600_12_165/visual/SupportRobot.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="/home/geekayman/based_on_flobaroid/model/meshes/irb2600_12_165/visual/SupportRobot.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="92.5052"/>
+      <inertia ixx="1.0" ixy="1.0" ixz="1.0" iyy="1.0" iyz="1.0" izz="1.0"/>
+    </inertial>
+  </link>
+  <joint name="base_joint_support" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0.5"/>
+    <parent link="support"/>
+    <child link="lwr_base_link"/>
+  </joint>
+
+
+  <link name="lwr_base_link">
+    <inertial>
+      <mass value="92.5052"/>
+      <origin xyz="0 0 0.055"/>
+      <inertia ixx="0.00305333333333" ixy="0" ixz="0" iyy="0.00288" iyz="0" izz="0.00305333333333"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0 "/>
+      <geometry>
+        <!-- <mesh filename="/home/geekayman/based_on_flobaroid/model/meshes/irb2600_12_165/visual/base.STL" scale="0.001 0.001 0.001"/> -->
+
+        <mesh filename="/home/geekayman/based_on_flobaroid/model/meshes/irb2600_12_165/visual/base_link.stl"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7372549 0.3490196 0.1607843 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <!-- <mesh filename="/home/geekayman/based_on_flobaroid/model/meshes/irb2600_12_165/visual/base.STL" scale="0.001 0.001 0.001"/> -->
+        <mesh filename="/home/geekayman/based_on_flobaroid/model/meshes/irb2600_12_165/collision/base_link.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- Second segment of the arm. Joint along z-axis -->
+  <joint name="lwr_0_joint" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0 0.445"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000" lower="-3.14159" upper="3.14159" velocity="3.054"/>
+    <dynamics damping="1.0" friction="0.0"/>
+    <parent link="lwr_base_link"/>
+    <child link="lwr_1_link"/>
+  </joint>
+  <link name="lwr_1_link">
+    <inertial>
+      <mass value="69.3794"/>
+      <origin rpy="0 0 0" xyz="0 -0.06 0.130"/>
+      <inertia ixx="0.01845" ixy="0" ixz="0" iyy="0.00405" iyz="0" izz="0.01602"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="/home/geekayman/based_on_flobaroid/model/meshes/irb2600_12_165/visual/link_1.stl"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7372549 0.3490196 0.1607843 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="/home/geekayman/based_on_flobaroid/model/meshes/irb2600_12_165/collision/link_1.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- Third segment of the arm. Joint along y-axis -->
+  <joint name="lwr_1_joint" type="revolute">
+    <origin rpy="0 0 0" xyz="0.15 0 0.0"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="1000" lower="-1.65806" upper="2.70526" velocity="3.054"/>
+    <dynamics damping="1.0" friction="0.0"/>
+    <parent link="lwr_1_link"/>
+    <child link="lwr_2_link"/>
+  </joint>
+  <link name="lwr_2_link">
+    <inertial>
+      <mass value="35.0020"/>
+      <origin rpy="0 0 0" xyz="0 0.06 0.07"/>
+      <inertia ixx="0.01845" ixy="0" ixz="0" iyy="0.00405" iyz="0" izz="0.01602"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="/home/geekayman/based_on_flobaroid/model/meshes/irb2600_12_165/visual/link_2.stl"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7372549 0.3490196 0.1607843 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="/home/geekayman/based_on_flobaroid/model/meshes/irb2600_12_165/collision/link_2.stl"/>
+      </geometry>
+    </collision>
+
+  </link>
+  <!-- Fourth element of the arm. z-axis -->
+  <joint name="lwr_2_joint" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0 0.7"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="100" lower="-2.96705972839" upper="2.96705972839" velocity="2.23402144255"/>
+    <dynamics damping="1.0" friction="0.0"/>
+    <parent link="lwr_2_link"/>
+    <child link="lwr_3_link"/>
+  </joint>
+  <link name="lwr_3_link">
+    <inertial>
+      <mass value="68.5583"/>
+      <origin rpy="0 0 0" xyz="0 0.06 0.130"/>
+      <inertia ixx="0.01845" ixy="0" ixz="0" iyy="0.00405" iyz="0" izz="0.01602"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="/home/geekayman/based_on_flobaroid/model/meshes/irb2600_12_165/visual/link_3.stl"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7372549 0.3490196 0.1607843 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="/home/geekayman/based_on_flobaroid/model/meshes/irb2600_12_165/collision/link_3.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- fifth element of the arm. x-axis -->
+  <joint name="lwr_3_joint" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0 0.115"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="1000" lower="-6.981" upper="6.981" velocity="6.283"/>
+    <dynamics damping="1.0" friction="0.0"/>
+    <parent link="lwr_3_link"/>
+    <child link="lwr_4_link"/>
+  </joint>
+  <link name="lwr_4_link">
+    <inertial>
+      <mass value="18.0455"/>
+      <origin rpy="0 0 0" xyz="0 -0.06 0.07"/>
+      <inertia ixx="0.01845" ixy="0" ixz="0" iyy="0.00405" iyz="0" izz="0.01602"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="/home/geekayman/based_on_flobaroid/model/meshes/irb2600_12_165/collision/link_4.stl"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7372549 0.3490196 0.1607843 1"/>
+      </material>
+    </visual>
+
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="/home/geekayman/based_on_flobaroid/model/meshes/irb2600_12_165/collision/link_4.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- Sixth element of the arm. z-axis -->
+  <joint name="lwr_4_joint" type="revolute">
+    <origin rpy="0 0 0" xyz="0.795 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="1000" lower="-2.094" upper="2.094" velocity="6.283"/>
+    <dynamics damping="1.0" friction="0.0"/>
+    <parent link="lwr_4_link"/>
+    <child link="lwr_5_link"/>
+  </joint>
+  <link name="lwr_5_link">
+    <inertial>
+      <mass value="1.0738"/>
+      <origin rpy="0 0 0" xyz="0 0 0.124"/>
+      <inertia ixx="0.0107530666667" ixy="0" ixz="0" iyy="0.00255" iyz="0" izz="0.00922306666667"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="/home/geekayman/based_on_flobaroid/model/meshes/irb2600_12_165/visual/link_5.stl"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.7372549 0.3490196 0.1607843 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="/home/geekayman/based_on_flobaroid/model/meshes/irb2600_12_165/collision/link_5.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- Seventh element of the arm. z-axis -->
+  <joint name="lwr_5_joint" type="revolute">
+    <origin rpy="0 0 0" xyz="0.085 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="1000" lower="-6.981" upper="6.981" velocity="6.28319"/>
+    <dynamics damping="1.0" friction="0.0"/>
+    <parent link="lwr_5_link"/>
+    <child link="lwr_6_link"/>
+  </joint>
+  <link name="lwr_6_link">
+    <inertial>
+      <mass value="0.1418"/>
+      <origin rpy="0 0 0" xyz="0 0 0.0625"/>
+      <inertia ixx="0.00416666666667" ixy="0" ixz="0" iyy="0.00416666666667" iyz="0" izz="0.00416666666667"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="/home/geekayman/based_on_flobaroid/model/meshes/irb2600_12_165/visual/link_6.stl"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.5 0.5 0.5 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="/home/geekayman/based_on_flobaroid/model/meshes/irb2600_12_165/collision/link_6.stl"/>
+      </geometry>
+    </collision>
+  </link>
+
+
+  <transmission name="lwr_0_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="lwr_0_joint">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="lwr_0_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="lwr_1_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="lwr_1_joint">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="lwr_1_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="lwr_2_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="lwr_2_joint">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="lwr_2_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="lwr_3_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="lwr_3_joint">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="lwr_3_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="lwr_4_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="lwr_4_joint">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="lwr_4_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="lwr_5_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="lwr_5_joint">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="lwr_5_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+</robot>
