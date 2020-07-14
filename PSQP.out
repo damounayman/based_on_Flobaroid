@@ -1,6 +1,5 @@
  ENTRY TO PSQP :
- NIT=   0  NFV=   1  NFG=   1  F= 777.425      C=0.3E+04  G=0.1E+61
- NIT=   1  NFV=  12  NFG=   2  F=0.196160E+08  C=0.3E+04  G=0.2E+03
- NIT=   2  NFV=  13  NFG=   3  F=0.546524E+11  C=0.1E+02  G=0.1E+11
+ NIT=   0  NFV=   1  NFG=   1  F= 1128.33      C=0.7E+01  G=0.1E+61
+ NIT=   1  NFV=  18  NFG=   2  F= 1127.99      C=0.1E+02  G=0.4E+04
  EXIT FROM PSQP :
- NIT=   3  NFV=  13  NFG=   3  F=0.546524E+11  C=0.1E+02  G=0.0E+00  ITERM=-10
+ NIT=   2  NFV=  18  NFG=   2  F= 1127.99      C=0.1E+02  G=0.0E+00  ITERM=-10
