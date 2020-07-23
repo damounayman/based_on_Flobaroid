@@ -59,7 +59,7 @@ def main():
     if args.filename:
         traj_file = args.filename
     else:
-        traj_file = config['urdf'] + '.trajectory.npz'
+        traj_file = config['urdf'] + '_trajectoryParams.npz'
 
     if config['optimizeTrajectory']:
         # find trajectory params by optimization
